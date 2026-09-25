@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.10)
 project(ssd_ros)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -30,8 +30,16 @@ include_directories(
   ${cv_bridge_INCLUDE_DIRS}
 )
 add_executable(single_shot_multibox_detector src/single_shot_multibox_detector.cpp)
-ament_target_dependencies(single_shot_multibox_detector OpenCV cv_bridge rclcpp std_msgs std_srvs sensor_msgs std_srvs rosidl_default_runtime vision_msgs)
-target_link_libraries(single_shot_multibox_detector yaml-cpp)
+# ament_target_dependencies(single_shot_multibox_detector OpenCV cv_bridge rclcpp std_msgs std_srvs sensor_msgs std_srvs rosidl_default_runtime vision_msgs)
+target_link_libraries(single_shot_multibox_detector 
+  rclcpp::rclcpp
+  ${OpenCV_LIBS}
+  cv_bridge::cv_bridge
+  ${std_srvs_TARGETS}
+  ${std_msgs_TARGETS}
+  ${vision_msgs_TARGETS}
+  yaml-cpp
+)
 
 install(TARGETS
   single_shot_multibox_detector
