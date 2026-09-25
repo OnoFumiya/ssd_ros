@@ -7,11 +7,11 @@ echo "╔══╣ Install: ssd_ros (STARTING) ╠══╗"
 DIR=$(pwd)
 
 # Clone required packages
-# cd ..
-# git clone -b ${ROS_DISTRO}-devel https://github.com/TeamSOBITS/image_to_position.git
-# cd image_to_position/
-# bash install.sh
-# cd ..
+cd ..
+git clone -b ${ROS_DISTRO}-devel https://github.com/OnoFumiya/image_to_position.git
+cd image_to_position/
+bash install.sh
+cd ..
 
 # Install Camera Packages
 sudo apt-get install -y \
